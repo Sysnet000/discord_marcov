@@ -64,7 +64,7 @@ def word_choice(sel):
 
 
 
-# slackbotに返答させる
+# botに返答させる
 def make_reply(text):
     # まず単語を学習する
     if text[-1] != "。": text += "。"
@@ -105,7 +105,10 @@ async def on_ready():
 @client.event
 
 async def on_message(message):
-    if client.user != message.author:
+    if message.attachments:
+        pass
+    
+    elif client.user != message.author:
         text = message.content
         res = make_reply(text)
         await client.send_message(message.channel, res)
